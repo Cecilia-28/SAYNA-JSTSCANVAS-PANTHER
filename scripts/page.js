@@ -1,6 +1,4 @@
-//animation on scroll... Using next-gen css feature
-//Intersection Observer... It tell if an element is visible in the DOM
-//I'll apply style to it
+
 const observer = new IntersectionObserver((entries) =>{
     entries.forEach((entry) =>{
         console.log(entry)
@@ -14,7 +12,6 @@ const observer = new IntersectionObserver((entries) =>{
 const toscrollElements = document.querySelectorAll('.scroll')
 toscrollElements.forEach((el) => observer.observe(el))
 
-//custom cursor
 const cursor = document.querySelector('.cursor')
 
 document.addEventListener("mousemove", e =>{
