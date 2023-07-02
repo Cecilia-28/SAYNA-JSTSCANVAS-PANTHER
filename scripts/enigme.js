@@ -1,74 +1,73 @@
-const answer = [
+const reponse = [
     "Si je suis fidèle c'est à ce trône peu importe qui monte dessus",
     "Il faut chercher en Arctique la cité perdue d'Atlantis. Ce sera un défi de taille pour ceux qui sont prêts à partir à la recherche de cette ancienne civilisation",
     "Le Roi Lion"
   ]
   
-  // Get the necessary elements
-  const inputElement = document.querySelector('.enigme input')
+  //selection des élements necessaires
+  const input = document.querySelector('.enigme input')
   const checkButton = document.querySelector('.enigme button')
   const feedbackElement = document.createElement('div')
   feedbackElement.style.marginTop = '10px'
   feedbackElement.style.fontFamily = 'texte'
   feedbackElement.style.fontWeight = 'bold'
   
-  // Append the feedback element below the input field
-  inputElement.parentNode.insertBefore(feedbackElement, inputElement.nextSibling)
+ input.parentNode.insertBefore(feedbackElement, input.nextSibling)
   
-  // Array to hold the enigmas and hints
-  const enigmas = [
+  
+  const enigmes = [
     { div: document.getElementById('first'), hint: document.getElementById('one') },
     { div: document.getElementById('second'), hint: document.getElementById('two') },
     { div: document.getElementById('third'), hint: document.getElementById('three') }
   ]
   
-  let currentEnigmaIndex = 0
+  let currentEnigmeIndex = 0
   
-  // Function to show the feedback message
-  function showFeedback(message, color) {
+  // function show Message pour connaitre si la réponse est vrai ou fausse
+  function showMessage(message, color) {
     feedbackElement.style.color = color
     feedbackElement.textContent = message
   
-    // Clear the feedback message after 3 seconds
+    // Effacer le feedback après 4s 
     setTimeout(function () {
       feedbackElement.textContent = ''
-    }, 3000)
+    }, 4000)
   }
   
-  // Function to show the next enigma
+  // Function pour l'Ecnigme suivante
   function showNextEnigma() {
-    // Check if there are more enigmas to show
-    if (currentEnigmaIndex < enigmas.length) {
-      const currentEnigma = enigmas[currentEnigmaIndex]
+    // verification s'il y a encore des enigmes
+    if (currentEnigmeIndex < enigmes.length) {
+      const currentEnigma = enigmes[currentEnigmeIndex]
   
-      // Hide all enigmas and hints
-      enigmas.forEach(enigma => {
+      //Cacher toute les enigmes
+      enigmes.forEach(enigma => {
         enigma.div.style.display = 'none'
         enigma.hint.style.display = 'none'
       })
   
-      // Show the current enigma and hint
+      // afficher le current enigme
       currentEnigma.div.style.display = 'block'
       currentEnigma.hint.style.display = 'block'
   
-      // Increment the current enigma index
-      currentEnigmaIndex++
+      // incrementer l'index de currentEnigmeIndex
+      currentEnigmeIndex++
     }
   }
   
-  // Function to show the congrats popup
+  // congrats popup
   function showCongratsPopup() {
     const congratsPopup = document.getElementById('congratsPopup')
     congratsPopup.style.display = 'block'
   }
   
-  // Function to show the second popup
+  // second popup
   function showSecondPopup() {
     const secondPopup = document.getElementById('secondPopup')
     secondPopup.style.display = 'block'
   }
   
-  // Countdown timer for the second popup
+  //decompte dans le sécond popup 
   function startTimer(duration) {
     const timerElement = document.getElementById('timer')
   
@@ -92,71 +91,56 @@ const answer = [
     }, 1000)
   }
   
-  // Event listener for the check button click
+  // Action de check button
   checkButton.addEventListener('click', function () {
-    // Get the input value and convert it to lowercase
-    const inputValue = inputElement.value.toLowerCase().trim()
+    const inputValue = input.value.toLowerCase().trim()
   
-    // Get the current enigma's answer and convert it to lowercase
-    const currentAnswer = answer[currentEnigmaIndex - 1].toLowerCase()
+    const currentReponse = reponse[currentEnigmeIndex - 1].toLowerCase()
   
-    // Check if the input value matches the answer
-    if (inputValue === currentAnswer) {
-      showFeedback("Correct answer! You guessed it right!", 'green')
-  
-      // Check if all enigmas have been guessed correctly
-      if (currentEnigmaIndex === enigmas.length) {
-        // Show the congrats popup
+    if (inputValue === currentReponse) {
+      showMessage("Correct reponse! You guessed it right!", 'green')
+      if (currentEnigmeIndex === enigmes.length) {
         showCongratsPopup()
-  
-        // After 5 seconds, show the second popup
         setTimeout(showSecondPopup, 5000)
-  
-        // Start the timer in the second popup
         startTimer(40)
       }
   
       showNextEnigma()
     } else {
-      showFeedback("Incorrect answer. Try again.", 'red')
+      showMessage("Incorrect reponse. Try again.", 'red')
     }
-  
-    // Clear the input value
-    inputElement.value = ''
+   input.value = ''
   })
   
-  // Function to restart the game from 0
+  // Function pour redemarer le jeux
   function restartGame() {
-    currentEnigmaIndex = 0
+    currentEnigmeIndex = 0
     showNextEnigma()
     hidePopup('secondPopup')
     hidePopup('congratsPopup')
   }
   
-  // Function to redirect to the homepage and reset the game
   function redirectHomepage() {
-    currentEnigmaIndex = 0
+    currentEnigmeIndex = 0
     showNextEnigma()
     hidePopup('congratsPopup')
     hidePopup('secondPopup')
-    window.location.href = 'index.html' // Replace 'index.html' with the desired homepage URL
+    window.location.href = 'index.html' 
   }
   
-  // Function to hide a popup
+  // Function pour cacher le popup 
   function hidePopup(popupId) {
     const popup = document.getElementById(popupId)
     popup.style.display = 'none'
   }
   
-  // Event listener for the restart button click
   const restartButton = document.getElementById('restartButton')
   restartButton.addEventListener('click', restartGame)
   
-  // Event listener for the redirect button click
   const redirectButton = document.getElementById('redirectButton')
   redirectButton.addEventListener('click', redirectHomepage)
   
-  // Countdown timer for the second popup
+  // decompte pour le sécond popup
   function startTimer(duration) {
     const timerElement = document.getElementById('timer')
   
@@ -181,5 +165,4 @@ const answer = [
     }, 1000)
   }
   
-  // Call the showNextEnigma function to display the first enigma
   showNextEnigma()  

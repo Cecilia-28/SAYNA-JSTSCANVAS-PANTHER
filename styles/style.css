@@ -1,8 +1,8 @@
-/*import external libs*/
+
 @import url(../styles/external-styles/default.css);
 @import url(../styles/external-styles/navbar.css);
 @import url(../styles/external-styles/footer.css);
-/*the fonts*/
+
 @font-face {
   font-family: "Titre H1";
   src: url(../fonts/panthera.otf);
@@ -113,16 +113,7 @@ footer {
   font-size: 2em;
 }
 
-/*slider cards*/
-/* #buste {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 75px;
-} */
 
-/*Troisième partie*/
 #naissance {
   margin: 25% 0;
 }
