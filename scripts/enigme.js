@@ -98,7 +98,7 @@ const reponse = [
     const currentReponse = reponse[currentEnigmeIndex - 1].toLowerCase()
   
     if (inputValue === currentReponse) {
-      showMessage("Correct reponse! You guessed it right!", 'green')
+      showMessage("Bonne réponse!", 'green')
       if (currentEnigmeIndex === enigmes.length) {
         showCongratsPopup()
         setTimeout(showSecondPopup, 5000)
@@ -107,7 +107,7 @@ const reponse = [
   
       showNextEnigma()
     } else {
-      showMessage("Incorrect reponse. Try again.", 'red')
+      showMessage("reponse incorrect! Réesayez", 'red')
     }
    input.value = ''
   })
